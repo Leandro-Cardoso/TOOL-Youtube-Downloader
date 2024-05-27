@@ -13,12 +13,18 @@ def get_lines_from_txt(txt_file:str) -> list:
 
 def convert_to_filename(name:str, format:str) -> str:
     filename = str(name)
+    filename = filename.lower()
+    filename = filename.replace(' ', '_')
+    valid_chars = 'abcdefghijklmnopqrstuvwxyz0123456789_-'
+    valid_filename = ''
+    for char in filename:
+        if char in valid_chars:
+            valid_filename += char
+    filename = valid_filename
     if '.' in format:
         filename += str(format)
     else:
         filename += '.' + str(format)
-    filename = filename.lower()
-    filename = filename.replace(' ', '_')
     return filename
 
 def main():
