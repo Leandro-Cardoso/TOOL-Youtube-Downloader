@@ -23,6 +23,7 @@ def convert_to_filename(name:str, format:str) -> str:
 
 def main():
     links = get_lines_from_txt(LINKS_FILE)
+    print('\n')
     for link in links:
         try:
             yt = YouTube(link)
@@ -31,8 +32,10 @@ def main():
             format = 'mp4'
             filename = convert_to_filename(title, format)
             stream.download(output_path = OUTPUT_PATH, filename = filename)
+            print(f'Downloaded: {filename}')
         except Exception as e:
             print(f'Erro: {link} -> {e}')
+    print('\n')
 
 if __name__ == '__main__':
     main()
